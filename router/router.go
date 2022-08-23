@@ -1,8 +1,8 @@
 package router
 
 import (
-	"edufund-test/service/loan"
 	controller "edufund-test/controller/loan"
+	"edufund-test/service/loan"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,5 +12,6 @@ func Route(v1 *gin.RouterGroup, ln *loan.Service) {
 	loan := v1.Group("/loan")
 	{
 		loan.POST("", handler.Create)
+		loan.GET("/:id", handler.Read)
 	}
 }

@@ -5,7 +5,11 @@ import (
 	"edufund-test/infrastructure"
 	model "edufund-test/model/loan"
 	"edufund-test/pkg"
+	"edufund-test/presenter"
 	"encoding/json"
+	"fmt"
+
+	"github.com/go-redis/redis"
 )
 
 type Repository struct {
@@ -24,4 +28,17 @@ func (repo *Repository) Insert(input model.Create) {
 	context := context.Background()
 	encodeData, _ := json.Marshal(input)
 	repo.rc.Client.Set(context, "loan:"+id, encodeData, 0)
+}
+
+func (repo *Repository) Get(id string) (string, *presenter.Response) {
+	context := context.Background()
+	key := fmt.Sprintf("loan:%s", id)
+	data, err := repo.rc.Client.Get(context, key).Result()
+	if err != nil && err != redis.Nil {
+		return "", &presenter.Response{
+			Message: pkg.ErrGetDataRedis.Error(),
+		}
+	}
+	return data, nil
+
 }

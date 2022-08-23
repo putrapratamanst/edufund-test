@@ -9,4 +9,5 @@ var (
 	ErrInternal          = errors.New("Terdapat kesalahan pada internal")
 	ErrMethodNotAllow    = errors.New("Metode tidak diizinkan")
 	ErrInvalidURL        = errors.New("URL tidak valid")
+	ErrGetDataRedis      = errors.New("Fail get data from redis")
 )

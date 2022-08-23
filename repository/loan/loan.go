@@ -1,6 +1,12 @@
 package loan
 
-import "edufund-test/infrastructure"
+import (
+	"context"
+	"edufund-test/infrastructure"
+	model "edufund-test/model/loan"
+	"edufund-test/pkg"
+	"encoding/json"
+)
 
 type Repository struct {
 	rc *infrastructure.RedisCache
@@ -13,6 +19,9 @@ func NewRepository(rc *infrastructure.RedisCache) *Repository {
 	}
 }
 
-func (repo *Repository)Create(){
-
+func (repo *Repository) Insert(input model.Create) {
+	id := pkg.RandomString()
+	context := context.Background()
+	encodeData, _ := json.Marshal(input)
+	repo.rc.Client.Set(context, "loan:"+id, encodeData, 0)
 }

@@ -1,7 +1,9 @@
 package loan
 
+import "edufund-test/model/loan"
+
 type ILoanService interface {
-	Create()
+	Create(input loan.Create)
 	// Read()
 	// Update()
 	// Approve()

@@ -3,7 +3,9 @@ package pkg
 import (
 	"edufund-test/model/response"
 	"fmt"
+	"math/rand"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/locales/id"
@@ -77,4 +79,12 @@ func ValidateRequest(bindType int, funcName string, ctx *gin.Context, input inte
 	}
 
 	return nil
+}
+
+func RandomString() string {
+	length:=10
+    rand.Seed(time.Now().UnixNano())
+    b := make([]byte, length)
+    rand.Read(b)
+    return fmt.Sprintf("%x", b)[:length]
 }

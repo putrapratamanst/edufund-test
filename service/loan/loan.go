@@ -1,6 +1,10 @@
 package loan
 
-import "edufund-test/interface/loan"
+import (
+	"edufund-test/interface/loan"
+	model "edufund-test/model/loan"
+	"time"
+)
 
 //Service interface
 type Service struct {
@@ -14,6 +18,8 @@ func NewService(repo loan.ILoanRepository) *Service {
 	}
 }
 
-func Create(){
-	
+func (s *Service)Create(input model.Create){
+	input.CreatedDate = time.Now()
+	input.UpdatedDate = time.Now()
+	s.repo.Insert(input)
 }

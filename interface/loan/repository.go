@@ -10,5 +10,5 @@ type ILoanRepository interface {
 	Insert(input model.Create)
 	Get(id string) (string, *presenter.Response)
 	Approve(id string, input loan.Read)
-	// Update()
+	Change(id string, input loan.Update)
 }

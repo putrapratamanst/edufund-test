@@ -9,5 +9,5 @@ type ILoanService interface {
 	Create(input loan.Create)
 	Detail(id string) (loan.Read, presenter.Response)
 	Approve(id string, input loan.Read)
-	// Update()
+	Change(id string, input loan.Update)
 }

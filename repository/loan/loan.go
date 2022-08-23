@@ -43,8 +43,13 @@ func (repo *Repository) Get(id string) (string, *presenter.Response) {
 
 }
 
-
 func (repo *Repository) Approve(id string, input model.Read) {
+	context := context.Background()
+	encodeData, _ := json.Marshal(input)
+	repo.rc.Client.Set(context, "loan:"+id, encodeData, 0)
+}
+
+func (repo *Repository) Change(id string, input model.Update) {
 	context := context.Background()
 	encodeData, _ := json.Marshal(input)
 	repo.rc.Client.Set(context, "loan:"+id, encodeData, 0)

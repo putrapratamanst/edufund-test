@@ -13,6 +13,7 @@ func Route(v1 *gin.RouterGroup, ln *loan.Service) {
 	{
 		loan.POST("", handler.Create)
 		loan.GET("/:id", handler.Read)
-		loan.PUT("/:id", handler.Approve)
+		loan.PATCH("/:id", handler.Approve)
+		loan.PUT("/:id", handler.Update)
 	}
 }

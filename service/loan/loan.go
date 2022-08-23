@@ -53,3 +53,6 @@ func (s *Service)Approve(id string, input model.Read){
 	input.UpdatedDate = time.Now()
 	s.repo.Approve(id, input)
 }
+func (s *Service)Change(id string, input model.Update){
+	s.repo.Change(id, input)
+}

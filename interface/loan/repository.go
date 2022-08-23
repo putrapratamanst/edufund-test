@@ -1,6 +1,7 @@
 package loan
 
 import (
+	"edufund-test/model/loan"
 	model "edufund-test/model/loan"
 	"edufund-test/presenter"
 )
@@ -8,6 +9,6 @@ import (
 type ILoanRepository interface {
 	Insert(input model.Create)
 	Get(id string) (string, *presenter.Response)
+	Approve(id string, input loan.Read)
 	// Update()
-	// Approve()
 }

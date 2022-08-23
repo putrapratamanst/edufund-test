@@ -47,3 +47,9 @@ func (s *Service)Detail(id string) (model.Read, *presenter.Response){
 
 	return result, nil
 }
+
+func (s *Service)Approve(id string, input model.Read){
+	input.IsApproved = true
+	input.UpdatedDate = time.Now()
+	s.repo.Approve(id, input)
+}

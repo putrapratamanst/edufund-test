@@ -42,3 +42,10 @@ func (repo *Repository) Get(id string) (string, *presenter.Response) {
 	return data, nil
 
 }
+
+
+func (repo *Repository) Approve(id string, input model.Read) {
+	context := context.Background()
+	encodeData, _ := json.Marshal(input)
+	repo.rc.Client.Set(context, "loan:"+id, encodeData, 0)
+}
